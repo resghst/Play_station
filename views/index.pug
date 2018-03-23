@@ -11,11 +11,42 @@ html
           #banner
             img.img-fluid(src='/images/back.jpg', alt='Responsive image')
         .col-sm-3
-          | One of three columns
-          .input-group.input-group-sm.mb-3
-            .input-group-prepend
-              span#inputGroup-sizing-sm.input-group-text Small
-            input.form-control(type='text', aria-label='Small', aria-describedby='inputGroup-sizing-sm')
+          button.btn.btn-dark.addmusic(type='button', data-toggle='modal', data-target='#exampleModal')
+            | Launch demo modal
+          table.table.table-striped.table-dark
+            thead
+              tr
+                th.idcount(scope='col') #
+                th.musicname(scope='col') music
+                th.cancel(scope='col') cancel
+            tbody
+              tr
+                th.idcount(scope='row') 1
+                td.musicname Mark
+                td.cancel 
+                  button.close(type='button', aria-label='Close')
+                    span(aria-hidden='true') X
+              tr
+                th.idcount(scope='row') 2
+                td.musicname Kark
+                td.cancel 
+                  button.close(type='button', aria-label='Close')
+                    span(aria-hidden='true') X
+    
+    #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+      .modal-dialog-centered(role='document')
+        .modal-content
+          .modal-header
+            h5#exampleModalLabel.modal-title Modal title
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .input-group.input-group-sm.mb-3
+              input.form-control(type='text', aria-label='Small', aria-describedby='inputGroup-sizing-sm')
+          .modal-footer
+            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+            button.btn.btn-primary.submusic(type='button') Save changes
+
 
     // 1. The <iframe> (and video player) will replace this <div> tag.
     //- #player

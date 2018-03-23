@@ -2,13 +2,17 @@ body{
 	background: #282828;
 	color: #FAFAFA;
   font-family:'Roboto', '黑體-繁', '微軟正黑體', sans-serif !important;
-  font-weight: bold ;
+	font-weight: bold ;
+	overflow-y: hidden;
 }
 
 .video{
 	height: 100%;
 	width: 100%;
 	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .container, .row{
@@ -22,18 +26,61 @@ body{
 	display: flex;
 	text-align: center;
 	justify-content: center;
-	align-items: center;
 }
 
-#player{
+#player, #banner{
 	position: absolute;
 	top: 0;
 	left: 0;
+	border-radius: 4px;
 }
 
 #banner{
-	position: absolute;
-	top: 0;
-	left: 0;
 	z-index: -1;
+}
+
+table{
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.cancel{
+	width: 10%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.close{
+	font-size: 20px;
+}
+
+th, td{
+	padding: 0px !important;
+	padding-top: 6px !important;
+	padding-bottom: 6px !important;
+}
+
+.idcount{
+	width: 20%;
+}
+
+.musicname{
+	width: 70%;
+}
+
+.col-sm-3, .col-sm-9{
+	padding: 3px;
+}
+
+.modal-content{
+	width: 50%;
+	height: 300px;
+}
+
+
+.modal-dialog-centered{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
