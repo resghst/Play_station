@@ -8,6 +8,11 @@ body{
 	height: 100%;
 	width: 100%;
 }
+
+.container{
+	margin-top:25px;
+}
+
 .container, .row{
 	height: 90vh;
 	width: 90vw;
