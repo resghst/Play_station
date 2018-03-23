@@ -6,17 +6,22 @@ html
   body
     .container
       .row
-        .col-sm-6.video
+        .col-sm-9.video
           #player
-          | One of three columns
+          #banner
+            img.img-fluid(src='/images/back.jpg', alt='Responsive image')
         .col-sm-3
           | One of three columns
-        .col-sm-3
-          | One of three columns
+          .input-group.input-group-sm.mb-3
+            .input-group-prepend
+              span#inputGroup-sizing-sm.input-group-text Small
+            input.form-control(type='text', aria-label='Small', aria-describedby='inputGroup-sizing-sm')
 
     // 1. The <iframe> (and video player) will replace this <div> tag.
     //- #player
     script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+    script(src='/javascripts/playlist.js')
     script(src='/javascripts/ytplayer.js')
+    script(src='/javascripts/index.js')

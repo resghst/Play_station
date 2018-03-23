@@ -1,7 +1,3 @@
-$( document ).ready(function() {
-	$(window).on('resize',listensize);
-})
-
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
@@ -12,22 +8,22 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 var width = $( '.video' ).width();
 var height = width*390/640;
-// console.log('height--'+height)
-// console.log('width--'+width)
+$("#banner").css({"width": width, "height": height});
 function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
-	height: height,
-	width: width,
-	videoId: 'JTEB0xKeaLY',
-	events: {
-		'onReady': onPlayerReady,
-		'onStateChange': onPlayerStateChange
-	}
+		height: height,
+		width: width,
+		videoId: '',
+		events: {
+			'onReady': onPlayerReady,
+			'onStateChange': onPlayerStateChange
+		}
 	});
 }
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-	event.target.playVideo();
+	event.target.playVideo(); 
+	player.setVolume(50)
 }
 // 5. The API calls this function when the player's state changes.
 //    The function indicates that when playing a video (state=1),
@@ -38,18 +34,26 @@ function onPlayerStateChange(event) {
 		// setTimeout(stopVideo, 0);
 		// done = true;
 	}
-	if( player.getPlayerState() == 0 ){
-		player.loadVideoById("C0EviZmG5qM")
-		// console.log("done")
+	if( event.data == YT.PlayerState.ENDED ){
+		if(playlist.currentposit == playlist.data.length)  playlist.novideo = true; 
+		else playlist.novideo = false;
+		if(!playlist.novideo){
+			player.cueVideoById(playlist.data[++playlist.currentposit])
+			player.playVideo();
+		}
+		// console.log(playlist)
+	}
+	if( player.getPlayerState() == -1 ){
+		// if(playlist.currentposit!=0) playlist.currentposit--;
+		// playlist.novideo = true;
 	}
 }
-function stopVideo() {
-	player.stopVideo();
-	// player.loadVideoById("m1CEs4gsQIQ", "large")
-}
-function listensize(){
+
+let listensize = ()=>{
 	width = $( '.video' ).width();
-	height = width*390/640;
+	height = width * 0.61;
 	player.setSize(width,height);
-	// console.log(width+ "--" +height)
+	$("#banner").css({"width": width, "height": height});
 }
+let loadByID = (id)=>  player.loadVideoById(id) ;
+let stopVideo = ()=> player.stopVideo();
