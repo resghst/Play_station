@@ -38,8 +38,9 @@ function onPlayerStateChange(event) {
 		if(playlist.currentposit == playlist.data.length)  playlist.novideo = true; 
 		else playlist.novideo = false;
 		if(!playlist.novideo){
-			player.cueVideoById(playlist.data[++playlist.currentposit])
+			player.cueVideoById(playlist.data[playlist.currentposit++])
 			player.playVideo();
+			updatelist(playlist)
 		}
 		// console.log(playlist)
 	}

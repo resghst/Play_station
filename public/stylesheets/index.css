@@ -15,7 +15,7 @@ body{
 	align-items: center;
 }
 
-.container, .row{
+.container-fluid, .row{
 	margin: 0px;
 	margin-top:25px;
 	height: 95vh;
@@ -33,15 +33,21 @@ body{
 	top: 0;
 	left: 0;
 	border-radius: 4px;
+	box-shadow: 1px 1px 15px #777;
 }
 
 #banner{
-	z-index: -1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 0;
+	background-image: url('/images/back2.png');
 }
 
 table{
 	font-size: 14px;
 	font-weight: 400;
+	margin-top: 20px;
 }
 
 .cancel{
@@ -52,7 +58,9 @@ table{
 }
 
 .close{
-	font-size: 20px;
+	font-size: 30px;
+	-webkit-text-stroke: 0.5px white;
+	line-height: 15px;
 }
 
 th, td{
@@ -78,9 +86,37 @@ th, td{
 	height: 300px;
 }
 
-
 .modal-dialog-centered{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.modal-content{
+	background: #282828;
+	border-radius: 12px;
+	box-shadow: 1px 1px 20px white;
+	text-shadow: 1px 1px 1px white;
+	width: 450px;
+	height: 250px;
+}
+
+input{
+	background: #282828 !important;
+}
+
+.modal-content button{
+	text-shadow: 0.5px 0.5px 0.5px white;
+	box-shadow: 0.5px 0.5px 0.5px white;
+}
+
+.button-group button{	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.button-group{	
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

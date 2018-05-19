@@ -1,41 +1,41 @@
 $( document ).ready(function() {
-	$(window).on('resize',listensize);
+	$(window).on('resize',listensize)
 	$('.submusic').on('click',()=>{
-		playlist.addvideo($(".form-control")[0].value);
-    $(".form-control")[0].value = "";
-    if( playlist.novideo){
-      player.cueVideoById(playlist.data[playlist.currentposit]);
-      player.playVideo();
-      playlist.novideo = false;
-      // console.log(playlist)
+    var videoquery = {
+      "path": "/urlParser",
+      "method": "get",
+      "data": {
+        "url": $(".form-control")[0].value
+      }
     }
-  }); 
-
-	$('.addmusic').on('click',()=>{
-    $('#aa').on('shown.bs.modal',()=>{
-      // $('#myInput').trigger('focus')
-    })
-  })
-  
-  $('.modal-header .close').on('click', ()=>{
-    $('#addLabel').on('hidden.bs.modal',()=>{
-      // $('#addLabel').modal('hide')
-    })
-
+    ajaxfun( videoquery, playfun)
   })
 
-});
+})
+
+let playfun =  (id)=>{
+  console.log(id)
+  playlist.push(id)
+  $(".form-control")[0].value = ""
+  if( playlist.novideo ){
+    player.cueVideoById(playlist.data[playlist.currentposit++])
+    player.playVideo()
+    playlist.novideo = false
+  }
+  updatelist(playlist)
+}
+
+
 
 let show = ()=>{
-  let status = player.getPlayerState();
+  let status = player.getPlayerState()
 	if( status==-1 || status==0 ){
-		console.log('the list is null')
-    $("#banner").css({"z-index": 0});
-    $('#player').hide();
+    $("#banner").css({"z-index": 0})
+    $('#player').hide()
   }
   else {
-    $("#banner").css({"z-index": -1});
-    $('#player').show();
+    $("#banner").css({"z-index": -1})
+    $('#player').show()
   }
-};
-setInterval(()=>{ show(); }, 1000);
+}
+setInterval(()=>{ show() }, 1000)

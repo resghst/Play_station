@@ -4,55 +4,75 @@ head
   link(rel="stylesheet", href="/stylesheets/index.css")
 html
   body
-    .container
+    .container-fluid
       .row
         .col-sm-9.video
           #player
           #banner
-            img.img-fluid(src='/images/back.jpg', alt='Responsive image')
+            img.img-fluid(src='/images/banner.png', alt='Responsive image')
         .col-sm-3
-          button.btn.btn-dark.addmusic(type='button', data-toggle='modal', data-target='#exampleModal')
-            | Launch demo modal
+          .button-group
+            button.btn.btn-dark.addmusic(type='button', data-toggle='modal', data-target='#exampleModalCenter')
+              | 網址點歌
+            button.btn.btn-dark.addmusic(type='button', data-toggle='modal', data-target='#addlist')
+              | 播放清單
+            button.btn.btn-dark.addmusic(type='button', data-toggle='modal', data-target='#cannal')
+              | 頻道新影片
           table.table.table-striped.table-dark
             thead
-              tr
+              tr(value="1")
                 th.idcount(scope='col') #
                 th.musicname(scope='col') music
-                th.cancel(scope='col') cancel
+                th.cancel(scope='col', value="1") cancel
             tbody
               tr
                 th.idcount(scope='row') 1
                 td.musicname Mark
                 td.cancel 
-                  button.close(type='button', aria-label='Close')
-                    span(aria-hidden='true') X
-              tr
-                th.idcount(scope='row') 2
-                td.musicname Kark
-                td.cancel 
-                  button.close(type='button', aria-label='Close')
-                    span(aria-hidden='true') X
-    
-    #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
-      .modal-dialog-centered(role='document')
+                  button#listclose.close(type='button', aria-label='Close')
+                    span(aria-hidden='true') ×
+    // Modal
+    #exampleModalCenter.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
+      .modal-dialog.modal-dialog-centered(role='document')
         .modal-content
           .modal-header
-            h5#exampleModalLabel.modal-title Modal title
+            h5#exampleModalLongTitle.modal-title 網址點歌
             button.close(type='button', data-dismiss='modal', aria-label='Close')
               span(aria-hidden='true') ×
           .modal-body
             .input-group.input-group-sm.mb-3
               input.form-control(type='text', aria-label='Small', aria-describedby='inputGroup-sizing-sm')
           .modal-footer
-            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-            button.btn.btn-primary.submusic(type='button') Save changes
+            //- button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+            button.btn.btn-dark.submusic(type='button', data-dismiss='modal') 加入清單
+    // Modal
+    #addlist.modal.fade(tabindex='-1', role='dialog', aria-labelledby='addlistTitle', aria-hidden='true')
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          .modal-header
+            h5#exampleModalLongTitle.modal-title 播放清單引入
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            .input-group.input-group-sm.mb-3
+              input.form-control(type='text', aria-label='Small', aria-describedby='inputGroup-sizing-sm')
+          .modal-footer
+            //- button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+            button.btn.btn-dark.submusic(type='button', data-dismiss='modal') 加入清單
+
+
+
+
 
 
     // 1. The <iframe> (and video player) will replace this <div> tag.
     //- #player
-    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+    script(src='https://code.jquery.com/jquery-3.3.1.min.js')
+    //- script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
     script(src='/javascripts/playlist.js')
     script(src='/javascripts/ytplayer.js')
     script(src='/javascripts/index.js')
+    script(src='/javascripts/ajaxconnect.js')
+    script(src='/javascripts/toDoList.js')
