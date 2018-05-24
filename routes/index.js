@@ -21,39 +21,33 @@ router.get('/requestsong', function(req, res, next){
   url = parse(querydata.url, true)
   console.log(url.query.v)
   let vid = url.query.v
-  let qurl = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&key=AIzaSyBvEQlpnF6vhxYYwuUxBxKq3KudxKy3ZX4&id='
+  let qurl = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&key=AIzaSyBtEa9HR713jZlCOh4xHD74bKxKqCavOhE&id='
   qurl += vid
   request({
     url: qurl,
     mathod: "GET"
   }, 
-  (e, r, b)=>{ 
-      if( e || !b ){ return }
-      let resjson = JSON.parse(b)
-      let items = resjson.items
-      let videoitem={}
-      let playlist ={}
-      items.forEach(element => {
-        videoitem.title = element.snippet.title
-        videoitem.image = element.snippet.thumbnails.default.url
-        videoitem.vid = vid
-      });
-      fs.readFile( filepath , 'utf8', function(err, buffer){  
-        playlist = JSON.parse(buffer)
-        console.log(playlist)
-        playlist.title.push(videoitem.title)
-        playlist.preimg.push(videoitem.image)
-        playlist.videoid.push(videoitem.vid)
-        playlist.videotime = new Date()
-        playlist.novideo = false
-        playlist.currentposit = Object.keys(playlist.videoid).length-1
-        console.log(playlist)
-        fs.writeFile( filepath , JSON.stringify(playlist), 'utf8')
-      }) 
-
-  
-
-      res.json(videoitem)
+  (e, r, b)=>{
+    if( e || !b ){ return }
+    let resjson = JSON.parse(b)
+    let items = resjson.items
+    let videoitem={}
+    let playlist ={}
+    items.forEach(element => {
+      videoitem.title = element.snippet.title
+      videoitem.image = element.snippet.thumbnails.default.url
+      videoitem.vid = vid
+    });
+    fs.readFile( filepath , 'utf8', function(err, buffer){  
+      playlist = JSON.parse(buffer)
+      playlist.title.push(videoitem.title)
+      playlist.preimg.push(videoitem.image)
+      playlist.videoid.push(videoitem.vid)
+      playlist.videotime = new Date()
+      playlist.novideo = false
+      fs.writeFile( filepath , JSON.stringify(playlist), 'utf8')
+    }) 
+    res.json(videoitem)
   })
 
 })
