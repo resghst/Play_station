@@ -1,21 +1,20 @@
 $( document ).ready(function() {
+  $(".form-control")[0].value = "https://www.youtube.com/watch?v=X3IVZgSVA1M"
 	$(window).on('resize',listensize)
 	$('.submusic').on('click',()=>{
     var videoquery = {
-      "path": "/urlParser",
+      "path": "/requestsong",
       "method": "get",
-      "data": {
-        "url": $(".form-control")[0].value
-      }
+      "data": { "url": $(".form-control")[0].value }
     }
     ajaxfun( videoquery, playfun)
   })
+  setInterval(()=>show(), 1000)
 
 })
 
-let playfun =  (id)=>{
-  console.log(id)
-  playlist.push(id)
+function playfun(id){
+  playlist.push(id.vid)
   $(".form-control")[0].value = ""
   if( playlist.novideo ){
     player.cueVideoById(playlist.data[playlist.currentposit++])
@@ -24,8 +23,6 @@ let playfun =  (id)=>{
   }
   updatelist(playlist)
 }
-
-
 
 let show = ()=>{
   let status = player.getPlayerState()
@@ -38,4 +35,4 @@ let show = ()=>{
     $('#player').show()
   }
 }
-setInterval(()=>{ show() }, 1000)
+

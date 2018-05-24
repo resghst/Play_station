@@ -22,6 +22,9 @@ function onYouTubeIframeAPIReady() {
 }
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
+	console.log("player on ready")
+	console.log(player)
+	player.cueVideoById(playlist.videoid[playlist.currentposit])
 	event.target.playVideo(); 
 	player.setVolume(50)
 }
@@ -35,18 +38,16 @@ function onPlayerStateChange(event) {
 		// done = true;
 	}
 	if( event.data == YT.PlayerState.ENDED ){
-		if(playlist.currentposit == playlist.data.length)  playlist.novideo = true; 
-		else playlist.novideo = false;
-		if(!playlist.novideo){
-			player.cueVideoById(playlist.data[playlist.currentposit++])
-			player.playVideo();
-			updatelist(playlist)
-		}
-		// console.log(playlist)
+		// && playlist.currentposit != playlist.videoid.length-1 ){
+		player.cueVideoById(playlist.videoid[playlist.currentposit++])
+		player.playVideo();
+		updatelist(playlist)
 	}
-	if( player.getPlayerState() == -1 ){
-		// if(playlist.currentposit!=0) playlist.currentposit--;
-		// playlist.novideo = true;
+	if( event.data == YT.PlayerState.unstarted  ){
+	// && playlist.currentposit != playlist.videoid.length-1){
+		player.cueVideoById(playlist.videoid[playlist.currentposit])
+		player.playVideo();
+		updatelist(playlist)
 	}
 }
 
@@ -58,3 +59,14 @@ let listensize = ()=>{
 }
 let loadByID = (id)=>  player.loadVideoById(id) ;
 let stopVideo = ()=> player.stopVideo();
+
+function playingmoniter(player){
+	if( player.getPlayerState() == -1){
+	//  && playlist.currentposit != playlist.videoid.length-1){
+		player.cueVideoById(playlist.videoid[playlist.currentposit])
+		player.playVideo();
+		updatelist(playlist)
+	}
+}
+
+setInterval(()=> playingmoniter(player), 1000)

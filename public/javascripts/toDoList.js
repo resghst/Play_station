@@ -6,11 +6,11 @@ var creatlistObj = (id, musicname)=>{
 var updatelist = (playlist)=>{
 	$('tbody tr').remove()
 	$('tbody').each(()=>{
-		let data = playlist.data
+		let data = playlist.title
 		let pos = playlist.currentposit
 		let len = data.length
 		let i = 0
-		console.log(data + " in " + pos +  "  "  + len )
+		console.log("playlist status " + pos +  "  "  + len )
 		for(j = pos-1; j<len ;j++){
 			$('tbody').append(creatlistObj(i++,data[j]))
 		}
