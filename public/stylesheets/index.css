@@ -6,6 +6,10 @@ body{
 	overflow-y: hidden;
 }
 
+.idcount{
+	width: 20px !important;
+}
+
 .video{
 	height: 100%;
 	width: 100%;
@@ -48,6 +52,7 @@ table{
 	font-size: 14px;
 	font-weight: 400;
 	margin-top: 20px;
+	margin-left: 10px;
 }
 
 .cancel{

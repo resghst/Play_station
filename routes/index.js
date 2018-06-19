@@ -68,6 +68,8 @@ router.get('/requestsong', function(req, res, next){
       console.log(playlist)
       let resjson = JSON.parse(b)
       let timestring = resjson.items[0].contentDetails.duration
+      divide = timestring.split(/PT|M|S/)
+      timestring = [divide[1], divide[2]]
       playlist.videotime.push(timestring)
     }) 
     return  delay(2000)
@@ -75,6 +77,7 @@ router.get('/requestsong', function(req, res, next){
   .then(function(){
     console.log('4')
     playlist.ctime = new Date()
+    if(playlist.btime=="" )playlist.btime = playlist.ctime
     playlist.novideo = false
     fs.writeFile( filepath , JSON.stringify(playlist), 'utf8')
     console.log('fplaylist')

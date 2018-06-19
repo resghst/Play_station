@@ -14,10 +14,22 @@ $( document ).ready(function() {
 })
 
 function playfun(id){
-  playlist.push(id.vid)
   $(".form-control")[0].value = ""
   if( playlist.novideo ){
-    player.cueVideoById(playlist.data[playlist.currentposit++])
+    playlist.currentposit++
+    let ctime = moment(playlist.ctime)
+    let btime = moment(playlist.btime)
+    let p = playlist.currentposit
+    let v = playlist.videotime[p]
+    let t = parseInt(v[0])*60 + parseInt(v[1])
+    duration = moment.duration(btime.diff(ctime))
+    t = t-duration._milliseconds/1000
+    if( t<0 ) t = 0
+    let playobj={
+      'videoId': playlist.videoid[playlist.currentposit],
+      'startSeconds': t
+    }
+		player.cueVideoById(playobj)
     player.playVideo()
     playlist.novideo = false
   }

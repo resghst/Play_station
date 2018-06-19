@@ -1,6 +1,14 @@
 var creatlistObj = (id, musicname)=>{
+	let title = ''
+	if(musicname != undefined){
+		if( musicname.length>13 ){
+			for(let i = 0; i<=13;i++) title+=musicname[i]
+			if(musicname.length>13) title+='...'
+		}
+		else if( musicname.length<13 ) title= musicname
+	}
 	return '<tr> <th scope="row" class="idcount">'+ id +
-	'</th> <td class="musicname">' + musicname +'</td> <td class="cancel"> <button type="button" aria-label="Close" class="close" id="listclose"><span aria-hidden="true">×</span></button></td></tr>'
+	'</th> <td class="musicname">' + title +'</td> <td class="cancel"> <button type="button" aria-label="Close" class="close" id="listclose"><span aria-hidden="true">×</span></button></td></tr>'
 }
 
 var updatelist = (playlist)=>{
@@ -10,10 +18,7 @@ var updatelist = (playlist)=>{
 		let pos = playlist.currentposit
 		let len = data.length
 		let i = 0
-		console.log("playlist status " + pos +  "  "  + len )
-		for(j = pos-1; j<len ;j++){
-			$('tbody').append(creatlistObj(i++,data[j]))
-		}
+		for(j = pos; j<len ;j++) $('tbody').append(creatlistObj(i++,data[j])) 
 	})
 }
 

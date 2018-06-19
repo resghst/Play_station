@@ -1,6 +1,6 @@
 {
   "restartable": "rs",
-  "ignore":[],
+  "ignore":[" /playlist/playlist.json"," /Playlist/playlist.json"],
   "verbose": true,
   "execMap": {
     "js": "node --harmony"
